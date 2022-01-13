@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 from __future__ import print_function
+import os
 
 # Host, port, username and password to connect to Transmission
 # Set user and pw to None if auth is not required
 client = {
-  'host': 'localhost',
-  'port': 9091,
-  'user': 'admin',
-  'password': 'passwd'
+  'host': os.environ.get('TRANSMISSION_HOST'),
+  'port': os.environ.get('TRANSMISSION_PORT'),
+  'user': os.environ.get('TRANSMISSION_USER'),
+  'password': os.environ.get('TRANSMISSION_PASSWORD')
 }
 config = {
 
   # Work with torrents having only these statuses.
   # Can be any combination of: 'check pending', 'checking', 'downloading', 'seeding', 'stopped'
   # If empty - will affect all torrents
-  'status_filter': (),
+  'status_filter': (os.environ.get('TRANSMISSION_FILTER')),
 
   # A list of URLs where to get the tracker lists from.
   # The lists are combined into one with duplicates removed.
@@ -48,7 +49,7 @@ config = {
 }
 cache_file = None  # Universal scope
 from os import getcwd
-if getcwd() != '/docker/transmission/transmission-trackers':
+if getcwd() != '/app':
   from os import environ as env, path, mkdir
   try:
     cache_file = path.join(env.get('TEMP',env.get('TMP',None)) ,'.cache/trackers.txt')
