@@ -28,3 +28,9 @@ Usage:
 * Adjust other parameters if needed (see comments)
 * Make the script run by cron e.g. every minute
 * You're done
+
+Docker Usage:
+Set the environment variables: TRANSMISSION_HOST, TRANSMISSION_PORT, TRANSMISSION_USER, TRANSMISSION_PASSWORD
+You can control the status filter by setting the TRANSMISSION_FILTER environment variable to one of the available options: 'check pending', 'checking', 'downloading', 'seeding', 'stopped'
+
+example: docker run -e TRANSMISSION_HOST='localhost' -e TRANSMISSION_PORT=9091 -e TRANSMISSION_USER='admin' -e TRANSMISSION_PASSWORD='password' cannibal3004/transmission-trackers:latest
