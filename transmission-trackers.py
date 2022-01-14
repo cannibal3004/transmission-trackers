@@ -5,8 +5,8 @@ import os
 # Host, port, username and password to connect to Transmission
 # Set user and pw to None if auth is not required
 client = {
-  'host': os.environ.get('TRANSMISSION_HOST'),
-  'port': os.environ.get('TRANSMISSION_PORT'),
+  'host': os.environ.get('TRANSMISSION_HOST','localhost'),
+  'port': os.environ.get('TRANSMISSION_PORT',9091),
   'user': os.environ.get('TRANSMISSION_USER'),
   'password': os.environ.get('TRANSMISSION_PASSWORD')
 }
@@ -23,6 +23,7 @@ config = {
   'remote_lists': [
     'https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt',
     'https://raw.githubusercontent.com/zcq100/transmission-trackers/master/tracker_ipv6.txt',
+    'https://trackerslist.com/all.txt',
     # ...
   ],
 
